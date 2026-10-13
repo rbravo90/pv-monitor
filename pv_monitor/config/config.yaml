@@ -1,0 +1,40 @@
+# Configuración de la planta y del sistema de monitoreo
+# Extensión de la memoria de Rodrigo Bravo Moreno (2020)
+
+plant:
+  name: "Planta Piloto"
+  latitude: -33.592
+  longitude: -70.704
+  altitude: 570          # m s.n.m.
+  timezone: "America/Santiago"
+
+  # Capacidad y parámetros del modelo de factor de pérdida
+  p_sn: 100.0            # kW (capacidad medida del sistema)
+  f_fv: 0.85             # factor de pérdida del módulo
+  kappa: -0.004          # coeficiente de temperatura de potencia (1/°C)
+  t_r: 25.0              # temperatura de referencia (°C)
+
+  # Modelo térmico de Sandia (Glass/cell/polymer sheet, open rack)
+  sandia_a: -3.56
+  sandia_b: -0.0750
+
+  # Altura de los módulos (para extrapolación de viento)
+  module_height: 2.0     # m
+  roughness_length: 0.03 # z0 (terreno abierto / pasto corto)
+
+# Umbrales y filtros
+thresholds:
+  power_active: 0.05     # fracción de P_sn para considerar operación activa
+  clearsky_kt: 0.9       # umbral Kt de Engerer
+  residual_crit: 0.05    # umbral crítico de residual para alerta (5%)
+  ttf_horizon_days: 30   # horizonte de alerta (días)
+
+# Ventanas de análisis
+windows:
+  degradation_days: 60   # días de ventana móvil para ajuste de degradación
+
+# Rutas de datos
+paths:
+  raw: "data/raw"
+  processed: "data/processed"
+  examples: "data/examples"
