@@ -1,62 +1,30 @@
 # PV Monitor
 
-Sistema de monitoreo remoto de plantas fotovoltaicas.
+Aplicación gratuita para monitoreo, optimización y predicción de fallas en sistemas fotovoltaicos de **pequeña y mediana escala** (domiciliarios, edificios, comunidades, galpones, etc.) en Chile.
 
-**Extensión de la memoria de título:**  
-*Desarrollo de un sistema de monitoreo remoto de plantas fotovoltaicas*  
-Rodrigo Alfonso Bravo Moreno (2020) – Universidad de Chile  
-Profesor Guía: Juan Peypouquet
+## Funcionalidades principales
 
-## Características
+- Mapa interactivo de Chile para ubicar plantas
+- Cálculo de producción energética según parámetros de la planta
+- Optimización de inclinación y azimut
+- Mapa de calor de potencial solar
+- Cuentas de usuario asociadas a correo
+- Creación y gestión de plantas FV
+- Monitoreo del estado de la planta
+- Sistema de alertas por detección y pronóstico de fallas
 
-- Modelo de generación con factor de pérdida + modelo térmico de Sandia
-- Extrapolación de velocidad de viento a la altura de los módulos (perfil logarítmico)
-- Clasificación de cielo despejado (Engerer)
-- Residual clear-sky activo
-- Modelo de degradación lineal + Time-to-Threshold (predicción de fallas)
-- Cálculo de Active Performance Ratio y otros KPIs
+## Stack
 
-## Estructura del proyecto
+- **Frontend**: Next.js + Tailwind + Leaflet
+- **Backend**: FastAPI (Python)
+- **Base de datos**: PostgreSQL / Supabase
+- **Autenticación**: Supabase Auth o Firebase
+- **Datos**: APIs gratuitas (Ministerio de Energía, DMC, etc.)
+
+## Estructura
 
 ```text
-pv_monitor/
-├── config/           # Configuración de planta y umbrales
-├── data/             # Datos crudos, procesados y de ejemplo
-├── src/              # Código fuente principal
-├── notebooks/        # Exploración y validación
-├── scripts/          # Pipelines y generación de reportes
-├── tests/            # Tests unitarios
-├── requirements.txt
-└── README.md
-```
-
-## Instalación
-
-```bash
-python -m venv .venv
-source .venv/bin/activate   # Linux/Mac
-# .venv\Scripts\activate    # Windows
-
-pip install -r requirements.txt
-```
-
-## Uso rápido
-
-```python
-from src.generation_model import expected_power
-from src.wind_extrapolation import logarithmic_profile
-# ... etc
-```
-
-## Próximos pasos
-
-1. Completar implementación de clearsky (Engerer completo)
-2. Pipeline de carga de datos satelitales (Solcast / Merra)
-3. Script de reporte mensual
-4. Tests unitarios
-5. Notebook de validación con datos de la planta piloto
-
-## Autor
-
-Rodrigo Alfonso Bravo Moreno  
-Extensiones desarrolladas en colaboración con Grok (xAI) – 2026
+├── backend/          # API FastAPI
+├── frontend/         # Aplicación Next.js
+├── pv_monitor/       # Código original de modelos (factor de pérdida, residual, etc.)
+└── docs/
